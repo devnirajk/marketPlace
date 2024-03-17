@@ -1,5 +1,4 @@
 import React from "react";
-import { Delete } from "@mui/icons-material";
 import { remove } from "../redux/Slices/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -26,9 +25,9 @@ const CartItem = ({ item }) => {
         </div>
         <div
           onClick={removeItemFromCart}
-          className="bg-purple-300 hover:bg-purple-400 transition-transform duration-300 cursor-pointer rounded-full p-3 mr-3"
+          className="bg-purple-700 hover:bg-red-800 transition-transform duration-300 cursor-pointer rounded-full p-3 mr-3"
         >
-          <Delete className="text-red-800" />
+          <button className="text-white text-base font-bold">Delete</button>
         </div>
       </div>
     </>

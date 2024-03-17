@@ -1,5 +1,4 @@
 import React from "react";
-import { ShoppingBasket } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -24,8 +23,7 @@ const Navbar = () => {
           </Link>
           <Link to={"/cart"}>
             <div className="relative">
-              <ShoppingBasket className="text-2xl cursor-pointer transition transform duration-200" />
-
+              <img className="h-10" src="https://img.freepik.com/premium-vector/basket-cart-icon_118813-10923.jpg"/>
               {cart.length > 0 && (
                 <div className="absolute bg-red-600 text-xs w-5 h-5 flex justify-center items-center -top-1 -right-2 rounded-full top- text-white">
                   {cart.length}
