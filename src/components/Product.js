@@ -1,10 +1,12 @@
 import React from "react";
 import { add, remove } from "../redux/Slices/cartSlice";
+import { addcurrentlyView, addrecentlyViewed } from "../redux/Slices/viewProductSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+
 
 const Product = ({ item }) => {
-  console.log(item);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.productList); 
   const addToCart = () => {
@@ -17,8 +19,14 @@ const Product = ({ item }) => {
 
   return (
     <>
-      <div className="group hover:shadow-2xl flex flex-col items-center border-2 border-pink-400 gap-3 p-4 h-[350px] mt-10 ml-5  rounded-xl">
-        <div className="h-[180px]">
+      <div className="cursor-pointer group hover:shadow-2xl flex flex-col items-center border-2 border-pink-400 gap-3 p-4 h-[350px] mt-10 ml-5  rounded-xl">
+        <div 
+          onClick={()=>
+          {
+          dispatch(addcurrentlyView(item));
+          dispatch(addrecentlyViewed(item));
+          navigate('/viewproduct');}}
+          className="h-[180px]">
           <img
             src={item.image}
             alt={item.title}
