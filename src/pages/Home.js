@@ -8,16 +8,19 @@ const Home = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [sortOrder, setSortOrder] = useState("");
   const recentlyViewedList = useSelector((state) => state.viewproduct.recentlyViewed); 
+  const [moreProducts, setMoreProducts] = useState(1);
 
   //Fetching products from Fake API
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products?limit=40')
+    fetch('https://fakestoreapi.com/products?limit=8')
       .then(res => res.json())
       .then(json => {
-        setProductList(json);
-        setFilteredProducts(json);
+        setProductList(prevState=>[...prevState, ...json]);
+        setFilteredProducts(prevState=>[...prevState, ...json]);
       });
-  }, []);
+  }, [moreProducts]);
+
+  console.log(productList)
 
   // function to search
   const handleSearch = (e) => {
@@ -74,6 +77,14 @@ const Home = () => {
             <Product key={item.id} item={item} />
           ))
         )}
+
+        <button
+          className="text-lg font-bold bg-blue-600 w-40 h-16 text-white rounded-md py-3 shadow-lg"
+          onClick={() => setMoreProducts((prevState) => prevState + 1)}
+        >
+          More Products
+        </button>
+
       </div>
       {
       (recentlyViewedList.length > 0)&&<h1 className="text-rose-700 text-2xl font-bold text-center my-6">Recently Viewed Products</h1>
